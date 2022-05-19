@@ -1,13 +1,21 @@
 import React from 'react';
+import { addToDb } from '../../utilities/fakedb';
 
 const Cosmetic = (props) => {
-   console.log(props.cosmetic);
-   const {name, balance,gender}=props.cosmetic;
+   
+   const {name, balance,gender, _id}=props.cosmetic;
+   const handlePurchase = id => {
+      //set to local storage
+      console.log(id);
+      addToDb(id);
+   }
+  
    return (
       <div>
          <h2>name: {name}</h2>
-         <p>price: {balance}</p>
+         <p>_id: {_id} price: {balance}</p>
          <p>Gender: {gender}</p>
+         <button onClick={() => handlePurchase(_id)}>Purches</button>
       </div>
    );
 };
